@@ -32,14 +32,5 @@ def text_handler(message):
     else:
         bot.send_message(chat_id, res)
 
-    '''
-    if text == "привет":
-        bot.send_message(chat_id, 'Привет, я бот - парсер хабра.')
-    elif text == "как дела?":
-        bot.send_message(chat_id, 'Хорошо, а у тебя?')
-    else:
-        bot.send_message(chat_id, 'Простите, не понял :(')
-    '''
-
 
 bot.polling(none_stop=True)
