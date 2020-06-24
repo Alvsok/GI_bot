@@ -13,9 +13,7 @@ bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(commands=['start', 'go'])
 def start_handler(message):
     hello_txt = 'Напечатай полное или сокращенное название продукта - '
-    hello_txt += 'я постараюсь найти его гликемический индекс '
-    hello_txt += 'и сообщить рекомендацию для тех, кто старается '
-    hello_txt += 'ограничить свое потребление сахара.'
+    hello_txt += 'я постараюсь найти его гликемический индекс.'
     bot.send_message(message.chat.id, hello_txt)
 
 
