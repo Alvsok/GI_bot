@@ -32,7 +32,7 @@ def text_handler(message):
     text = message.text.lower()
     chat_id = message.chat.id
     for elem in di:
-        if text in elem:
+        if text in elem and anti_words(text, elem):
             res += str(elem) + ' ' + str(di[elem]) + '\n'
     if res == '':
         bot.send_message(chat_id, 'Простите, не знаю такой продукт :(')
