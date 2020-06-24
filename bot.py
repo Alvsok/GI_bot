@@ -1,9 +1,18 @@
 import telebot
 import os
 from dotenv import load_dotenv
-from gi_data import di
+from gi_data import di, anti_di
 
 load_dotenv()
+
+
+def anti_words(word, sss):
+    if anti_di.get(word) is None:
+        return True
+    for elem in anti_di[word]:
+        if elem in sss:
+            return False
+    return True
 
 
 TOKEN = os.getenv('TELEGRAM_TOKEN')
