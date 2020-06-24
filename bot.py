@@ -29,7 +29,13 @@ def start_handler(message):
 @bot.message_handler(content_types=['text'])
 def text_handler(message):
     res = ''
-    text = message.text.lower()
+    text_full = message.text.lower()
+
+    if len(text_full) > 5:
+        text = text_full[:5]
+    else:
+        text = text_full
+
     chat_id = message.chat.id
     for elem in di:
         if text in elem and anti_words(text, elem):
