@@ -1,7 +1,7 @@
 import telebot
 import os
 from dotenv import load_dotenv
-from gi_data import di, anti_di
+from gi_data import di, anti_di, syn_di
 
 load_dotenv()
 
@@ -49,9 +49,14 @@ def text_handler(message):
     text_full = message.text.lower()
 
     if len(text_full) > 5:
-        text = text_full[:5]
+        text1 = text_full[:5]
     else:
-        text = text_full
+        text1 = text_full
+
+    if text1 in syn_di:
+        text = syn_di[text1]
+    else:
+        text = text1
 
     chat_id = message.chat.id
     for elem in di:
