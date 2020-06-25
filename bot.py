@@ -19,8 +19,18 @@ def print_str(arr):
     res_str = ''
     arr.sort()
     for elem in arr:
-        res_str += elem[1] + ' ' + str(elem[0]) + '\n'
+        res_str += print_emoji(elem[0]) + elem[1] + '\t' + str(elem[0]) + '\n'
+        # res_str +=  elem[1] + ' ' + str(elem[0]) + '\n'
     return res_str
+
+
+def print_emoji(n):
+    if n < 50:
+        return '\U0001F7E9'
+    elif 50 <= n < 70:
+        return '\U0001F7E8'
+    else:
+        return '\U0001F7E5'
 
 
 TOKEN = os.getenv('TELEGRAM_TOKEN')
