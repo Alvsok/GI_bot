@@ -15,6 +15,14 @@ def anti_words(word, sss):
     return True
 
 
+def print_str(arr):
+    res_str = ''
+    arr.sort()
+    for elem in arr:
+        res_str += elem[1] + ' ' + str(elem[0]) + '\n'
+    return res_str
+
+
 TOKEN = os.getenv('TELEGRAM_TOKEN')
 bot = telebot.TeleBot(TOKEN)
 
@@ -28,7 +36,7 @@ def start_handler(message):
 
 @bot.message_handler(content_types=['text'])
 def text_handler(message):
-    res = ''
+    res_arr = []
     text_full = message.text.lower()
 
     if len(text_full) > 5:
@@ -39,10 +47,11 @@ def text_handler(message):
     chat_id = message.chat.id
     for elem in di:
         if text in elem and anti_words(text, elem):
-            res += str(elem) + ' ' + str(di[elem]) + '\n'
-    if res == '':
-        bot.send_message(chat_id, 'Простите, не знаю такой продукт :(')
+            res_arr.append((di[elem], elem))
+    if res_arr == []:
+        bot.send_message(chat_id, 'Простите, я не знаю ГИ этого продукта :(')
     else:
+        res = print_str(res_arr)
         bot.send_message(chat_id, res)
 
 
