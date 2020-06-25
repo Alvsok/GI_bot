@@ -65,7 +65,8 @@ def text_handler(message):
         text = text_full
 
     chat_id = message.chat.id
-    for elem in di:
+
+    for elem in list(di):
         if text in elem and anti_words(text, elem):
             res_arr.append((di[elem], elem))
     if res_arr == []:
