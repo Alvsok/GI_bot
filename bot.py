@@ -32,6 +32,13 @@ def print_emoji(n):
         return '\U0001F7E5'
 
 
+def word_in_di(word, di):
+    for elem in list(di):
+        if word in elem:
+            return True
+    return False
+
+
 TOKEN = os.getenv('TELEGRAM_TOKEN')
 bot = telebot.TeleBot(TOKEN)
 
@@ -50,13 +57,12 @@ def text_handler(message):
 
     if len(text_full) > 5:
         text1 = text_full[:5]
+        if word_in_di(text1, syn_di):
+            text = syn_di[text1]
+        else:
+            text = text1
     else:
-        text1 = text_full
-
-    if text1 in syn_di:
-        text = syn_di[text1]
-    else:
-        text = text1
+        text = text_full
 
     chat_id = message.chat.id
     for elem in di:
