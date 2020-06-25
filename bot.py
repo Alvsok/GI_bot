@@ -20,7 +20,6 @@ def print_str(arr):
     arr.sort()
     for elem in arr:
         res_str += print_emoji(elem[0]) + elem[1] + '\t' + str(elem[0]) + '\n'
-        # res_str +=  elem[1] + ' ' + str(elem[0]) + '\n'
     return res_str
 
 
