@@ -6,20 +6,11 @@ from gi_data import di, anti_di, syn_di
 load_dotenv()
 
 
-def anti_words(word, sss):
-    if anti_di.get(word) is None:
-        return True
-    for elem in anti_di[word]:
-        if elem in sss:
-            return False
-    return True
-
-
 def print_str(arr):
     res_str = ''
     arr.sort()
     for elem in arr:
-        res_str += print_emoji(elem[0]) + elem[1] + '\t' + str(elem[0]) + '\n'
+        res_str += print_emoji(elem[0]) + elem[1] + ' ' + str(elem[0]) + '\n'
     return res_str
 
 
@@ -32,11 +23,21 @@ def print_emoji(n):
         return '\U0001F7E5'
 
 
+def w1_ok_with_w2(word1, word2):
+
+    for elem in list(anti_di):
+        if word1 in elem:
+            for elem2 in anti_di[elem]:
+                if elem2 in word2:
+                    return False
+    return True
+
+
 def word_in_di(word, di):
     for elem in list(di):
         if word in elem:
-            return True
-    return False
+            return (True, di[elem])
+    return (False, [])
 
 
 TOKEN = os.getenv('TELEGRAM_TOKEN')
@@ -54,21 +55,22 @@ def start_handler(message):
 def text_handler(message):
     res_arr = []
     text_full = message.text.lower()
+    chat_id = message.chat.id
 
-    if len(text_full) > 5:
+    if len(text_full) > 4:
         text1 = text_full[:5]
-        if word_in_di(text1, syn_di):
-            text = syn_di[text1]
+        # проверка на синонимы
+        if word_in_di(text1, syn_di)[0]:
+            text = word_in_di(text1, syn_di)[1]
         else:
             text = text1
     else:
         text = text_full
 
-    chat_id = message.chat.id
-
     for elem in list(di):
-        if text in elem and anti_words(text, elem):
+        if text in elem and w1_ok_with_w2(text, elem):
             res_arr.append((di[elem], elem))
+
     if res_arr == []:
         bot.send_message(chat_id, 'Простите, я не знаю ГИ этого продукта :(')
     else:
