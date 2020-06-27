@@ -75,19 +75,18 @@ def text_handler(message):
     if res_arr == []:
         bot.send_message(chat_id, 'Простите, я не знаю ГИ этого продукта :(')
     else:
+        res = print_str(res_arr)
+        bot.send_message(chat_id, res)
 
         keyboard = types.InlineKeyboardMarkup()
         url_button = types.InlineKeyboardButton(
-            text='Перейти', url='https://alsok.org/')
+            text='Рецепт здоровой кухни', url='https://alsok.org/')
         keyboard.add(url_button)
-        bot.send_message(
-            message.chat.id,
-            'Нажми на кнопку и перейди',
-            reply_markup=keyboard
-        )
-
-        res = print_str(res_arr)
-        bot.send_message(chat_id, res)
+        # bot.send_message(
+        #    message.chat.id,
+        #    'Нажми на кнопку и узнай',
+        #    reply_markup=keyboard
+        # )
 
 
 '''
