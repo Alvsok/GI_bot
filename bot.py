@@ -75,6 +75,17 @@ def text_handler(message):
     if res_arr == []:
         bot.send_message(chat_id, 'Простите, я не знаю ГИ этого продукта :(')
     else:
+
+        keyboard = types.InlineKeyboardMarkup()
+        url_button = types.InlineKeyboardButton(
+            text='Перейти', url='https://alsok.org/')
+        keyboard.add(url_button)
+        bot.send_message(
+            message.chat.id,
+            'Нажми на кнопку и перейди',
+            reply_markup=keyboard
+        )
+
         res = print_str(res_arr)
         bot.send_message(chat_id, res)
 
@@ -91,20 +102,20 @@ def url(message):
         "Нажми на кнопку и перейди на наш сайт.",
         reply_markup=markup
     )
-'''
 
 
-@bot.message_handler(content_types=["text"])
+
+@bot.message_handler(content_types=['text'])
 def default_test(message):
     keyboard = types.InlineKeyboardMarkup()
     url_button = types.InlineKeyboardButton(
-        text="Перейти", url="https://alsok.org/")
+        text='Перейти', url='https://alsok.org/')
     keyboard.add(url_button)
     bot.send_message(
         message.chat.id,
         "Привет! Нажми на кнопку и перейди в Alsok.",
         reply_markup=keyboard
     )
-
+'''
 
 bot.polling(none_stop=True)
