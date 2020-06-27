@@ -84,7 +84,7 @@ def text_handler(message):
         keyboard.add(url_button)
         bot.send_message(
             message.chat.id,
-            'Нажми на кнопку и узнай',
+            #    'Нажми на кнопку и узнай',
             reply_markup=keyboard
         )
 
