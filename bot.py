@@ -1,4 +1,5 @@
 import telebot
+from telebot import types
 import os
 from dotenv import load_dotenv
 from gi_data import di, anti_di, syn_di
@@ -76,6 +77,19 @@ def text_handler(message):
     else:
         res = print_str(res_arr)
         bot.send_message(chat_id, res)
+
+
+@bot.message_handler(commands=['url'])
+def url(message):
+    markup = types.InlineKeyboardMarkup()
+    btn_my_site = types.InlineKeyboardButton(
+        text='Наш сайт', url='https://alsok.org/')
+    markup.add(btn_my_site)
+    bot.send_message(
+        message.chat.id,
+        "Нажми на кнопку и перейди на наш сайт.",
+        reply_markup=markup
+    )
 
 
 bot.polling(none_stop=True)
