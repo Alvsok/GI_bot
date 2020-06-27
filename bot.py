@@ -79,6 +79,7 @@ def text_handler(message):
         bot.send_message(chat_id, res)
 
 
+'''
 @bot.message_handler(commands=['url'])
 def url(message):
     markup = types.InlineKeyboardMarkup()
@@ -89,6 +90,20 @@ def url(message):
         message.chat.id,
         "Нажми на кнопку и перейди на наш сайт.",
         reply_markup=markup
+    )
+'''
+
+
+@bot.message_handler(content_types=["text"])
+def default_test(message):
+    keyboard = types.InlineKeyboardMarkup()
+    url_button = types.InlineKeyboardButton(
+        text="Перейти", url="https://alsok.org/")
+    keyboard.add(url_button)
+    bot.send_message(
+        message.chat.id,
+        "Привет! Нажми на кнопку и перейди в Alsok.",
+        reply_markup=keyboard
     )
 
 
