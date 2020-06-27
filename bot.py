@@ -82,11 +82,11 @@ def text_handler(message):
         url_button = types.InlineKeyboardButton(
             text='Рецепт здоровой кухни', url='https://alsok.org/')
         keyboard.add(url_button)
-        # bot.send_message(
-        #    message.chat.id,
-        #    'Нажми на кнопку и узнай',
-        #    reply_markup=keyboard
-        # )
+        bot.send_message(
+            message.chat.id,
+            'Нажми на кнопку и узнай',
+            reply_markup=keyboard
+        )
 
 
 '''
