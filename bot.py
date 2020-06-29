@@ -79,7 +79,7 @@ def text_handler(message):
         res = print_str(res_arr)
         bot.send_message(chat_id, res)
 
-        num_adv = str(randint(1, 3))
+        num_adv = str(randint(1, 4))
 
         keyboard = types.InlineKeyboardMarkup()
         url_button = types.InlineKeyboardButton(
