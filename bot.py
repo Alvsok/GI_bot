@@ -1,8 +1,9 @@
 import telebot
 from telebot import types
+from random import randint
 import os
 from dotenv import load_dotenv
-from gi_data import di, anti_di, syn_di
+from gi_data import di, anti_di, syn_di, adv_di
 
 load_dotenv()
 
@@ -78,13 +79,17 @@ def text_handler(message):
         res = print_str(res_arr)
         bot.send_message(chat_id, res)
 
+        num_adv = str(randint(1, 3))
+
         keyboard = types.InlineKeyboardMarkup()
         url_button = types.InlineKeyboardButton(
-            text='DiabeNot – двойной удар по диабету', url='http://tradeboxprice.ru/r/jKOU4Yjd/s')
+            text=adv_di[num_adv][0],
+            url='adv_di[num_adv][2]'
+        )
         keyboard.add(url_button)
         bot.send_message(
             message.chat.id,
-            'Нажми на кнопку и узнай как не пустить диабет в свою жизнь',
+            adv_di[num_adv][1],
             reply_markup=keyboard
         )
 
