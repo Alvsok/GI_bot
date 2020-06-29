@@ -84,7 +84,7 @@ def text_handler(message):
         keyboard = types.InlineKeyboardMarkup()
         url_button = types.InlineKeyboardButton(
             text=adv_di[num_adv][0],
-            url='adv_di[num_adv][2]'
+            url=adv_di[num_adv][2]
         )
         keyboard.add(url_button)
         bot.send_message(
